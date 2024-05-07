@@ -21,12 +21,6 @@ Multimodal semantic segmentation is a pivotal com-ponent of computer vision, whi
 ![U3M](fig/U3M.png)
 **Figure:** Overall architecture of U3M model.
 
-![featurefusion](fig/featurefusion.png)
-**Figure:** Architecture of featurefusion module.
-
-![PSPmodule](fig/PSPmodule.png)
-**Figure:** Architecture of PSPmodule.
-
 </div>
 
 ## Environment
