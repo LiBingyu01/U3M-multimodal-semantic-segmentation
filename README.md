@@ -6,15 +6,15 @@
 
 </div>
 
-## Introduction
+## 💬 Introduction
 
 Multimodal semantic segmentation is a pivotal com-ponent of computer vision, which often outperforms unimodal methods by harnessing a richer set of information from diverse sources. Existing models often employ modality-specific designs that inherently introduce biases toward certain modalities. While these biases may be beneficial in specific contexts, they often compromise the model’s adaptability across various multimodal scenarios, potentially degrading performance. To address this problem, we turn to the inherent capabilities of the model itself to discover the optimal equilibrium in multimodal fusion, and propose U3M: An Unbiased Multiscale Modal Fusion Model for Multimodal Semantic Segmentation. Specificially, this method involves an unbiased integration of multimodal visual data. Additionally, we employ feature fusion at multiple scales to ensure the effective extraction and integration of both global and local features. Experimental results demonstrate that our approach achieves superior performance across multiple datasets, validating its efficacy in enhancing the robustness and versatility of semantic segmentation in diverse settings.
 
-## Updates
+## 🚀 Updates
 - [x] 05/2024: init repository and release the code.
 - [x] 05/2024: release U3M model weights. Download from [**GoogleDrive**](https://drive.google.com/drive/folders/1w0J-D5kME3WyFLl-ZFrNlqtG1AmcfZtz?usp=sharing).
 
-## U3M model
+## 👁️ U3M model
 
 <div align="center"> 
 
@@ -23,7 +23,7 @@ Multimodal semantic segmentation is a pivotal com-ponent of computer vision, whi
 
 </div>
 
-## Environment
+## 🔍 Environment
 
 First, create and activate the environment using the following commands: 
 ```bash
@@ -31,7 +31,7 @@ conda env create -f environment.yaml
 conda activate U3M
 ```
 
-## Data preparation
+## 📦 Data preparation
 Download the dataset:
 - [MCubeS](https://github.com/kyotovision-public/multimodal-material-segmentation), for multimodal material segmentation with RGB-A-D-N modalities.
 - [FMB](https://github.com/JinyuanLiu-CV/SegMiF), for FMB dataset with RGB-Infrared modalities.
@@ -64,7 +64,7 @@ data/
 │   │   └── Visible
 ```
 
-## Model Zoo
+## 📦 Model Zoo
 
 ### MCubeS
 | Model-Modal      | mIoU   | weight |
@@ -89,7 +89,7 @@ data/
 | FMB-RGB          | 57.17 | [GoogleDrive](https://drive.google.com/drive/folders/1w0J-D5kME3WyFLl-ZFrNlqtG1AmcfZtz?usp=sharing) |
 | FMB-RGB-Infrared | 60.76 | [GoogleDrive](https://drive.google.com/drive/folders/1w0J-D5kME3WyFLl-ZFrNlqtG1AmcfZtz?usp=sharing) |
 
-## Visulization
+## 👁️ Visulization
 Please refer to the visulization_mm.py for the segmentation results and visulization_tsne.py for T-sne visulization.
 
 <div align="center"> 
@@ -129,7 +129,7 @@ python -m tools.train_mm --cfg configs/fmb_rgbt.yaml
 ```
 
 
-## Evaluation
+##  Evaluation
 To evaluate U3M models, please download respective model weights ([**GoogleDrive**](https://drive.google.com/drive/folders/1w0J-D5kME3WyFLl-ZFrNlqtG1AmcfZtz?usp=sharing)) and save them under any folder you like.
 
 <!-- 
@@ -153,12 +153,12 @@ python -m tools.val_mm --cfg configs/mcubes_rgbadn.yaml
 python -m tools.val_mm --cfg configs/fmb_rgbt.yaml
 ```
 
-## License
+## 🚩 License
 
 This repository is under the Apache-2.0 license. For commercial use, please contact with the authors.
 
 
-## Citations
+## 📜 Citations
 
 If you use U3M model, please cite the following work:
 
@@ -168,7 +168,7 @@ If you use U3M model, please cite the following work:
 }
 ```
 
-## Acknowledgements
+## 🔈 Acknowledgements
 Our codebase is based on the following Github repositories. Thanks to the following public repositories:
 - [DELIVER](https://github.com/jamycheung/DELIVER)
 - [RGBX-semantic-segmentation](https://github.com/huaaaliu/RGBX_Semantic_Segmentation)
