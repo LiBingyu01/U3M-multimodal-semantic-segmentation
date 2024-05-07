@@ -1,0 +1,104 @@
+DEVICE          : cuda                        # device used for training and evaluation (cpu, cuda, cuda0, cuda1, ...)
+SAVE_DIR        : 'xxx/code/U3M/checkpoints_training/U3M_mcubes'          # output folder name used for saving the model, logs and inference results
+GPUs            : 4
+GPU_IDs         : [0,1,2,3]
+USE_WANDB       : False                       # Whether you want to use wandb
+WANDB_NAME      : 'U3M-MCubeS-RGB'        # name for the run
+
+MODEL:
+  NAME          : U3M                                         # name of the model you are using
+  BACKBONE      : U3M-B4                                      # model variant
+  PRETRAINED    : 'xxx/code/U3M/checkpoints/pretrained/segformers/mit_b4.pth'     # backbone model's weight 
+  RESUME        : ''                                               # checkpoint file
+  # RESUME        : 'xxx/code/U3M/checkpoints_training/U3M_mcubes/U3M-MCubeS-RGB/U3M_U3M-B4_MCubeS_epoch98_49.1_checkpoint.pth'                                                # checkpoint file
+
+DATASET:
+  NAME          : MCubeS                                            # dataset name to be trained with (camvid, cityscapes, ade20k)
+  ROOT          : 'xxx/code/U3M/data/MCubeS/multimodal_dataset/'                            # dataset root path
+  IGNORE_LABEL  : 255
+  # MODALS        : ['image']
+  # MODALS        : ['image', 'nir'] 
+  # MODALS        : ['image', 'aolp']
+  # MODALS        : ['image', 'dolp']
+  # MODALS        : ['image', 'aolp', 'nir']
+  # MODALS        : ['image', 'aolp', 'dolp']
+  MODALS        : ['image', 'nir', 'aolp', 'dolp']
+
+TRAIN:
+  IMAGE_SIZE    : [512, 512]      # training image size in (h, w) === Fixed in dataloader, following MCubeSNet
+  BATCH_SIZE    : 8               # batch size used to train
+  EPOCHS        : 250             # number of epochs to train
+  EVAL_START    : 0               # evaluation interval during training
+  EVAL_INTERVAL : 1               # evaluation interval during training
+  AMP           : true            # use AMP in training
+  DDP           : false           # use DDP training
+
+LOSS:
+  NAME          : OhemCrossEntropy # loss function name
+  CLS_WEIGHTS   : false            # use class weights in loss calculation
+
+OPTIMIZER:
+  NAME          : adamw           # optimizer name
+  LR            : 0.00008         # initial learning rate used in optimizer
+  WEIGHT_DECAY  : 0.01            # decay rate used in optimizer 
+
+SCHEDULER:
+  NAME          : warmuppolylr    # scheduler name
+  POWER         : 0.9             # scheduler power
+  WARMUP        : 10              # warmup epochs used in scheduler
+  WARMUP_RATIO  : 0.1             # warmup ratio
+
+
+EVAL:
+  MODEL_PATH    : 'xxx/code/U3M/checkpoints_val/U3M_mcubes/U3M_B4_Mcubes_rgbadn_51.69.pth'                 # Path to your saved model
+  IMAGE_SIZE    : [1024, 1024]                              # evaluation image size in (h, w)                       
+  BATCH_SIZE    : 8                                       # batch size
+  BATCH_SIZE_VIS    : 1                                       # batch size
+  VIS_SAVE_DIR  : 'xxx/code/U3M/checkpoints_vis/U3M_mcubes/rgbadn'              # Where to save visualization
+  VIS_TSNE_SAVE_DIR  : 'xxx/code/U3M/checkpoints_tsne/U3M_mcubes/rgbadn'              # Where to save visualization
+  MSF: 
+    ENABLE      : false                                   # multi-scale and flip evaluation  
+    FLIP        : true                                    # use flip in evaluation  
+    SCALES      : [0.5, 0.75, 1.0, 1.25, 1.5, 1.75]       # scales used in MSF evaluation                
+  OVERLAY       : false                                   # save the overlay result (image_alpha+label_alpha)
+
+# rgbad
+# EVAL:
+#   MODEL_PATH    : 'xxx/code/U3M/checkpoints_val/U3M_mcubes/U3M_B4_Mcubes_rgbad_50.26.pth'                 # Path to your saved model
+#   IMAGE_SIZE    : [1024, 1024]                              # evaluation image size in (h, w)                       
+#   BATCH_SIZE    : 8                                       # batch size
+#   BATCH_SIZE_VIS    : 1                                       # batch size
+#   VIS_SAVE_DIR  : 'xxx/code/U3M/checkpoints_vis/U3M_mcubes/rgbad'              # Where to save visualization
+#   VIS_TSNE_SAVE_DIR  : 'xxx/code/U3M/checkpoints_tsne/U3M_mcubes/rgbad'              # Where to save visualization
+#   MSF: 
+#     ENABLE      : false                                   # multi-scale and flip evaluation  
+#     FLIP        : true                                    # use flip in evaluation  
+#     SCALES      : [0.5, 0.75, 1.0, 1.25, 1.5, 1.75]       # scales used in MSF evaluation                
+#   OVERLAY       : false                                   # save the overlay result (image_alpha+label_alpha)
+
+# # rgba
+# EVAL:
+#   MODEL_PATH    : 'xxx/code/U3M/checkpoints_val/U3M_mcubes/U3M_B4_Mcubes_rgba_49.89.pth'                 # Path to your saved model
+#   IMAGE_SIZE    : [1024, 1024]                              # evaluation image size in (h, w)                       
+#   BATCH_SIZE    : 8                                       # batch size
+#   BATCH_SIZE_VIS    : 1                                       # batch size
+#   VIS_SAVE_DIR  : 'xxx/code/U3M/checkpoints_vis/U3M_mcubes/rgba'              # Where to save visualization
+#   VIS_TSNE_SAVE_DIR  : 'xxx/code/U3M/checkpoints_tsne/U3M_mcubes/rgba'              # Where to save visualization
+#   MSF: 
+#     ENABLE      : false                                   # multi-scale and flip evaluation  
+#     FLIP        : true                                    # use flip in evaluation  
+#     SCALES      : [0.5, 0.75, 1.0, 1.25, 1.5, 1.75]       # scales used in MSF evaluation                
+#   OVERLAY       : false                                   # save the overlay result (image_alpha+label_alpha)
+
+# rgb
+# EVAL:
+#   MODEL_PATH    : 'xxx/code/U3M/checkpoints_val/U3M_mcubes/U3M_B4_Mcubes_rgb_49.22.pth'                 # Path to your saved model
+#   IMAGE_SIZE    : [1024, 1024]                              # evaluation image size in (h, w)                       
+#   BATCH_SIZE    : 8                                       # batch size
+#   BATCH_SIZE_VIS    : 1                                       # batch size
+#   VIS_SAVE_DIR  : 'xxx/code/U3M/checkpoints_vis/U3M_mcubes/rgb'              # Where to save visualization
+#   MSF: 
+#     ENABLE      : false                                   # multi-scale and flip evaluation  
+#     FLIP        : true                                    # use flip in evaluation  
+#     SCALES      : [0.5, 0.75, 1.0, 1.25, 1.5, 1.75]       # scales used in MSF evaluation                
+#   OVERLAY       : false                                   # save the overlay result (image_alpha+label_alpha)
