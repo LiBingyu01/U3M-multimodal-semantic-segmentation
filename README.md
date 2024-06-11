@@ -164,7 +164,11 @@ If you use U3M model, please cite the following work:
 
 - **U3M** [[**arXiv**]()]
 ```
-@misc{
+@article{li2024u3m,
+  title={U3M: Unbiased Multiscale Modal Fusion Model for Multimodal Semantic Segmentation},
+  author={Li, Bingyu and Zhang, Da and Zhao, Zhiyuan and Gao, Junyu and Li, Xuelong},
+  journal={arXiv preprint arXiv:2405.15365},
+  year={2024}
 }
 ```
 
