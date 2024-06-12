@@ -162,7 +162,7 @@ This repository is under the Apache-2.0 license. For commercial use, please cont
 
 If you use U3M model, please cite the following work:
 
-- **U3M** [[**arXiv**]()]
+- **U3M** [[**arXiv**](https://arxiv.org/abs/2405.15365)]
 ```
 @article{li2024u3m,
   title={U3M: Unbiased Multiscale Modal Fusion Model for Multimodal Semantic Segmentation},
